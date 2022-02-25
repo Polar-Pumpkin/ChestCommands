@@ -16,6 +16,7 @@ public class Lang implements MappedConfig {
     public String default_no_icon_permission = "&cYou don't have permission for this icon.";
     public String no_required_item = "&cYou must have &e{amount}x {material} &c(durability: {durability}) for this.";
     public String no_money = "&cYou need {money}$ for this.";
+    public String no_point = "&cYou need {point} point(s) for this.";
     public String no_exp = "&cYou need {levels} XP levels for this.";
     public String menu_not_found = "&cMenu not found! " + Errors.User.notifyStaffRequest;
     public String any = "any"; // Used in no_required_item when durability is not restrictive

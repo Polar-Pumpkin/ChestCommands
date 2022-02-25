@@ -24,6 +24,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.black_ixx</groupId>
+            <artifactId>PlayerPoints</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>me.confuser</groupId>
             <artifactId>BarAPI</artifactId>
         </dependency>

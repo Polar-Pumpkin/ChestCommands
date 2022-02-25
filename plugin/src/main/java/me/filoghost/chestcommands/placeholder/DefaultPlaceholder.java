@@ -6,6 +6,7 @@
 package me.filoghost.chestcommands.placeholder;
 
 import me.filoghost.chestcommands.api.PlaceholderReplacer;
+import me.filoghost.chestcommands.hook.PointEconomyHook;
 import me.filoghost.chestcommands.hook.VaultEconomyHook;
 import org.bukkit.Bukkit;
 
@@ -24,6 +25,14 @@ public enum DefaultPlaceholder {
             return VaultEconomyHook.formatMoney(VaultEconomyHook.getMoney(player));
         } else {
             return "[ECONOMY PLUGIN NOT FOUND]";
+        }
+    }),
+
+    POINT("point", (player, argument) -> {
+        if (PointEconomyHook.INSTANCE.isEnabled()) {
+            return Integer.toString(PointEconomyHook.getPoint(player));
+        } else {
+            return "[PLAYERPOINTS NOT FOUND]";
         }
     });
 

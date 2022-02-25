@@ -5,20 +5,10 @@
  */
 package me.filoghost.chestcommands.parsing;
 
+import me.filoghost.chestcommands.action.*;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import me.filoghost.chestcommands.action.Action;
-import me.filoghost.chestcommands.action.BroadcastAction;
-import me.filoghost.chestcommands.action.ChangeServerAction;
-import me.filoghost.chestcommands.action.ConsoleCommandAction;
-import me.filoghost.chestcommands.action.DragonBarAction;
-import me.filoghost.chestcommands.action.GiveItemAction;
-import me.filoghost.chestcommands.action.GiveMoneyAction;
-import me.filoghost.chestcommands.action.OpCommandAction;
-import me.filoghost.chestcommands.action.OpenMenuAction;
-import me.filoghost.chestcommands.action.PlaySoundAction;
-import me.filoghost.chestcommands.action.PlayerCommandAction;
-import me.filoghost.chestcommands.action.SendMessageAction;
 
 public class ActionParser {
 
@@ -46,6 +36,7 @@ public class ActionParser {
         BROADCAST("broadcast", BroadcastAction::new),
         GIVE_ITEM("give", GiveItemAction::new),
         GIVE_MONEY("give-money", GiveMoneyAction::new),
+        GIVE_POINT("give-point", GivePointAction::new),
         SOUND("sound", PlaySoundAction::new),
         BOSS_BAR("dragon-bar", DragonBarAction::new);
 

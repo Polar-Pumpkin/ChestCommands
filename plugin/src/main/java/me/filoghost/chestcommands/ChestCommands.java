@@ -10,10 +10,7 @@ import me.filoghost.chestcommands.command.CommandHandler;
 import me.filoghost.chestcommands.config.ConfigManager;
 import me.filoghost.chestcommands.config.CustomPlaceholders;
 import me.filoghost.chestcommands.config.Settings;
-import me.filoghost.chestcommands.hook.BarAPIHook;
-import me.filoghost.chestcommands.hook.BungeeCordHook;
-import me.filoghost.chestcommands.hook.PlaceholderAPIHook;
-import me.filoghost.chestcommands.hook.VaultEconomyHook;
+import me.filoghost.chestcommands.hook.*;
 import me.filoghost.chestcommands.legacy.UpgradeExecutorException;
 import me.filoghost.chestcommands.legacy.UpgradesExecutor;
 import me.filoghost.chestcommands.listener.CommandListener;
@@ -82,6 +79,7 @@ public class ChestCommands extends FCommonsPlugin {
         BackendAPI.setImplementation(new DefaultBackendAPI());
 
         VaultEconomyHook.INSTANCE.setup();
+        PointEconomyHook.INSTANCE.setup();
         BarAPIHook.INSTANCE.setup();
         PlaceholderAPIHook.INSTANCE.setup();
         BungeeCordHook.INSTANCE.setup();
@@ -90,6 +88,12 @@ public class ChestCommands extends FCommonsPlugin {
             Log.info("Hooked Vault");
         } else {
             Log.warning("Couldn't find Vault and a compatible economy plugin! Money-related features will not work.");
+        }
+
+        if (PointEconomyHook.INSTANCE.isEnabled()) {
+            Log.info("Hooked PlayerPoints");
+        } else {
+            Log.warning("Couldn't find PlayerPoints! Point-related features will not work.");
         }
 
         if (BarAPIHook.INSTANCE.isEnabled()) {
