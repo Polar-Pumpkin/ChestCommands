@@ -5,28 +5,7 @@
  */
 package me.filoghost.chestcommands.parsing.icon;
 
-import me.filoghost.chestcommands.attribute.ActionsAttribute;
-import me.filoghost.chestcommands.attribute.AmountAttribute;
-import me.filoghost.chestcommands.attribute.AttributeErrorHandler;
-import me.filoghost.chestcommands.attribute.BannerColorAttribute;
-import me.filoghost.chestcommands.attribute.BannerPatternsAttribute;
-import me.filoghost.chestcommands.attribute.ClickPermissionAttribute;
-import me.filoghost.chestcommands.attribute.ClickPermissionMessageAttribute;
-import me.filoghost.chestcommands.attribute.DurabilityAttribute;
-import me.filoghost.chestcommands.attribute.EnchantmentsAttribute;
-import me.filoghost.chestcommands.attribute.ExpLevelsAttribute;
-import me.filoghost.chestcommands.attribute.IconAttribute;
-import me.filoghost.chestcommands.attribute.KeepOpenAttribute;
-import me.filoghost.chestcommands.attribute.LeatherColorAttribute;
-import me.filoghost.chestcommands.attribute.LoreAttribute;
-import me.filoghost.chestcommands.attribute.MaterialAttribute;
-import me.filoghost.chestcommands.attribute.NBTDataAttribute;
-import me.filoghost.chestcommands.attribute.NameAttribute;
-import me.filoghost.chestcommands.attribute.PositionAttribute;
-import me.filoghost.chestcommands.attribute.PriceAttribute;
-import me.filoghost.chestcommands.attribute.RequiredItemsAttribute;
-import me.filoghost.chestcommands.attribute.SkullOwnerAttribute;
-import me.filoghost.chestcommands.attribute.ViewPermissionAttribute;
+import me.filoghost.chestcommands.attribute.*;
 import me.filoghost.chestcommands.parsing.ParseException;
 import me.filoghost.fcommons.config.ConfigPath;
 import me.filoghost.fcommons.config.ConfigType;
@@ -51,6 +30,7 @@ public enum AttributeType {
     BANNER_COLOR("BANNER-COLOR", ConfigType.STRING, BannerColorAttribute::new),
     BANNER_PATTERNS("BANNER-PATTERNS", ConfigType.STRING_LIST, BannerPatternsAttribute::new),
     PRICE("PRICE", ConfigType.DOUBLE, PriceAttribute::new),
+    POINT("POINT", ConfigType.INTEGER, PointAttribute::new),
     EXP_LEVELS("LEVELS", ConfigType.INTEGER, ExpLevelsAttribute::new),
     CLICK_PERMISSION("PERMISSION", ConfigType.STRING, ClickPermissionAttribute::new),
     CLICK_PERMISSION_MESSAGE("PERMISSION-MESSAGE", ConfigType.STRING, ClickPermissionMessageAttribute::new),
@@ -61,6 +41,7 @@ public enum AttributeType {
     REQUIRED_ITEMS("REQUIRED-ITEMS", ConfigType.STRING_LIST, RequiredItemsAttribute::new);
 
     private static final Map<ConfigPath, AttributeType> attributeTypeByConfigKey;
+
     static {
         attributeTypeByConfigKey = new HashMap<>();
         for (AttributeType attributeParser : values()) {
@@ -78,6 +59,10 @@ public enum AttributeType {
         };
     }
 
+    public static AttributeType fromConfigKey(ConfigPath configKey) {
+        return attributeTypeByConfigKey.get(configKey);
+    }
+
     public ConfigPath getConfigKey() {
         return configKey;
     }
@@ -86,24 +71,16 @@ public enum AttributeType {
         return attributeParser;
     }
 
-    public static AttributeType fromConfigKey(ConfigPath configKey) {
-        return attributeTypeByConfigKey.get(configKey);
-    }
-
-
     @FunctionalInterface
     private interface AttributeFactory<V, A extends IconAttribute> {
-
         A create(V value, AttributeErrorHandler errorHandler) throws ParseException;
-
     }
 
 
     @FunctionalInterface
     public interface AttributeParser {
-
-        IconAttribute parse(ConfigValue configValue, AttributeErrorHandler errorHandler) throws ParseException, ConfigValueException;
-
+        IconAttribute parse(ConfigValue configValue, AttributeErrorHandler errorHandler) throws ParseException,
+                ConfigValueException;
     }
 
 }
