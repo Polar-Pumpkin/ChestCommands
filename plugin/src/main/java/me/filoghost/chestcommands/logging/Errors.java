@@ -87,7 +87,6 @@ public class Errors {
         public static final String invalidColorFormat = "value must match the format \"red, green, blue\"";
         public static final String invalidPatternFormat = "value must match the format \"pattern:color\"";
 
-        public static final String invalidClickTypedAttribute = "invalid ClickTyped attribute";
         public static final String unknownAttribute = "unknown attribute";
         public static final String materialCannotBeAir = "material cannot be air";
 

@@ -9,6 +9,9 @@ import me.filoghost.chestcommands.api.PlaceholderReplacer;
 import me.filoghost.chestcommands.hook.PointEconomyHook;
 import me.filoghost.chestcommands.hook.VaultEconomyHook;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+
+import java.util.Arrays;
 
 public enum DefaultPlaceholder {
 
@@ -34,7 +37,11 @@ public enum DefaultPlaceholder {
         } else {
             return "[PLAYERPOINTS NOT FOUND]";
         }
-    });
+    }),
+
+    SPACE_LEFT("space_left", (player, argument) -> String.valueOf(Arrays.stream(player.getInventory().getContents())
+            .filter(item -> item == null || item.getType() == Material.AIR)
+            .count()));
 
 
     private final String identifier;
