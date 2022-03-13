@@ -22,7 +22,6 @@ public class PriceAttribute extends ClickTypedIconAttribute {
         this.price = price;
     }
 
-
     @Override
     public void apply(InternalConfigurableIcon icon, ClickType type) {
         icon.addRequirement(type, new RequiredMoney(price));

@@ -32,9 +32,13 @@ public class Utils {
 
     public static long countEmptySlot(Player player) {
         final PlayerInventory inventory = player.getInventory();
-        final List<ItemStack> items = new ArrayList<>(Arrays.asList(inventory.getContents()));
-        items.removeAll(Arrays.asList(inventory.getArmorContents()));
-        items.remove(inventory.getItemInOffHand());
+        final List<ItemStack> items = new ArrayList<>(Arrays.asList(inventory.getStorageContents()));
+
+        // for (final ItemStack armor : inventory.getArmorContents()) {
+        //     items.remove(armor);
+        // }
+        // items.remove(inventory.getItemInOffHand());
+
         return items.stream()
                 .filter(item -> item == null || item.getType() == Material.AIR)
                 .count();

@@ -6,6 +6,7 @@
 package me.filoghost.chestcommands.placeholder;
 
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 public class PlaceholderString {
@@ -14,7 +15,8 @@ public class PlaceholderString {
     private final String stringWithStaticPlaceholders;
     private final boolean hasDynamicPlaceholders;
 
-    public static @Nullable PlaceholderString of(String string) {
+    @Contract("!null -> !null")
+    public static @Nullable PlaceholderString of(@Nullable String string) {
         if (string != null) {
             return new PlaceholderString(string);
         } else {
