@@ -13,16 +13,16 @@ import org.bukkit.inventory.ItemStack;
 public class MenuOpenItem {
 
     private final Material material;
-    private final ClickType clickType;
+    private final OpenerType openerType;
     private short durability;
     private boolean isRestrictiveDurability;
 
-    public MenuOpenItem(Material material, ClickType clickType) {
+    public MenuOpenItem(Material material, OpenerType openerType) {
         Preconditions.checkArgumentNotAir(material, "material");
-        Preconditions.notNull(clickType, "clickType");
+        Preconditions.notNull(openerType, "clickType");
         
         this.material = material;
-        this.clickType = clickType;
+        this.openerType = openerType;
     }
 
     public void setRestrictiveDurability(short durability) {
@@ -43,6 +43,6 @@ public class MenuOpenItem {
             return false;
         }
 
-        return clickType.isValidInteract(action);
+        return openerType.isValidInteract(action);
     }
 }

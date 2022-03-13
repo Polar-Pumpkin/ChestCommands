@@ -5,16 +5,18 @@
  */
 package me.filoghost.chestcommands.attribute;
 
-import java.util.ArrayList;
-import java.util.List;
 import me.filoghost.chestcommands.action.Action;
 import me.filoghost.chestcommands.action.DisabledAction;
 import me.filoghost.chestcommands.icon.InternalConfigurableIcon;
 import me.filoghost.chestcommands.logging.Errors;
 import me.filoghost.chestcommands.parsing.ActionParser;
 import me.filoghost.chestcommands.parsing.ParseException;
+import org.bukkit.event.inventory.ClickType;
 
-public class ActionsAttribute implements IconAttribute {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ActionsAttribute extends ClickTypedIconAttribute {
 
     private final List<Action> actions;
 
@@ -37,8 +39,13 @@ public class ActionsAttribute implements IconAttribute {
     }
 
     @Override
+    public void apply(InternalConfigurableIcon icon, ClickType type) {
+        icon.addActions(type, actions);
+    }
+
+    @Override
     public void apply(InternalConfigurableIcon icon) {
-        icon.setClickActions(actions);
+        icon.addActions(null, actions);
     }
 
 }

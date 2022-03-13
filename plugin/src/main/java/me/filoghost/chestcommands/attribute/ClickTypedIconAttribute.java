@@ -3,12 +3,14 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
+
 package me.filoghost.chestcommands.attribute;
 
 import me.filoghost.chestcommands.icon.InternalConfigurableIcon;
+import org.bukkit.event.inventory.ClickType;
 
-public interface IconAttribute {
+public abstract class ClickTypedIconAttribute implements IconAttribute {
 
-    void apply(InternalConfigurableIcon icon);
+    public abstract void apply(InternalConfigurableIcon icon, ClickType type);
 
 }

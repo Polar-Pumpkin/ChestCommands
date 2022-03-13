@@ -7,6 +7,7 @@ package me.filoghost.chestcommands.api;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -38,6 +39,6 @@ public interface Icon {
      * @param clicker  the player that clicked an icon
      * @since 1
      */
-    void onClick(@NotNull MenuView menuView, @NotNull Player clicker);
+    void onClick(@NotNull MenuView menuView, @NotNull Player clicker, @NotNull InventoryClickEvent event);
 
 }

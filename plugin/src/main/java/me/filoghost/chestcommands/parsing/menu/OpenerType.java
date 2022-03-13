@@ -8,13 +8,13 @@ package me.filoghost.chestcommands.parsing.menu;
 import org.bukkit.event.block.Action;
 import org.jetbrains.annotations.Nullable;
 
-public enum ClickType {
+public enum OpenerType {
 
     LEFT,
     RIGHT,
     BOTH;
 
-    public static @Nullable ClickType fromOptions(boolean left, boolean right) {
+    public static @Nullable OpenerType fromOptions(boolean left, boolean right) {
         if (left && right) {
             return BOTH;
         } else if (left) {

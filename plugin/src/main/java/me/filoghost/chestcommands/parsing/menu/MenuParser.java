@@ -161,9 +161,9 @@ public class MenuParser {
                 try {
                     ItemStackParser itemReader = new ItemStackParser(openItemMaterial, false);
                     itemReader.checkNotAir();
-                    ClickType clickType = ClickType.fromOptions(leftClick, rightClick);
+                    OpenerType openerType = OpenerType.fromOptions(leftClick, rightClick);
 
-                    MenuOpenItem openItem = new MenuOpenItem(itemReader.getMaterial(), clickType);
+                    MenuOpenItem openItem = new MenuOpenItem(itemReader.getMaterial(), openerType);
 
                     if (itemReader.hasExplicitDurability()) {
                         openItem.setRestrictiveDurability(itemReader.getDurability());

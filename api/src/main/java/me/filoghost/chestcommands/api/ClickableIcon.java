@@ -6,13 +6,14 @@
 package me.filoghost.chestcommands.api;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * Common interface extended by other interfaces, represents a simplified {@link Icon} with a settable click handler.
  * <p>
- * This interface exists to avoid having to implement {@link Icon#onClick(MenuView, Player)} via subclassing.
+ * This interface exists to avoid having to implement {@link Icon#onClick(MenuView, Player, InventoryClickEvent)} via subclassing.
  *
  * @see ConfigurableIcon
  * @see StaticIcon
@@ -45,9 +46,9 @@ public interface ClickableIcon extends Icon {
      * @since 1
      */
     @Override
-    default void onClick(@NotNull MenuView menuView, @NotNull Player clicker) {
+    default void onClick(@NotNull MenuView menuView, @NotNull Player clicker, @NotNull InventoryClickEvent event) {
         if (getClickHandler() != null) {
-            getClickHandler().onClick(menuView, clicker);
+            getClickHandler().onClick(menuView, clicker, event);
         }
     }
 

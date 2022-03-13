@@ -6,10 +6,12 @@
 package me.filoghost.chestcommands.attribute;
 
 import me.filoghost.chestcommands.icon.InternalConfigurableIcon;
+import me.filoghost.chestcommands.icon.requirement.RequiredExpLevel;
 import me.filoghost.chestcommands.logging.Errors;
 import me.filoghost.chestcommands.parsing.ParseException;
+import org.bukkit.event.inventory.ClickType;
 
-public class ExpLevelsAttribute implements IconAttribute {
+public class ExpLevelsAttribute extends ClickTypedIconAttribute {
 
     private final int expLevels;
 
@@ -19,10 +21,15 @@ public class ExpLevelsAttribute implements IconAttribute {
         }
         this.expLevels = expLevels;
     }
-    
+
+    @Override
+    public void apply(InternalConfigurableIcon icon, ClickType type) {
+        icon.addRequirement(type, new RequiredExpLevel(expLevels));
+    }
+
     @Override
     public void apply(InternalConfigurableIcon icon) {
-        icon.setRequiredExpLevel(expLevels);
+        icon.addRequirement(null, new RequiredExpLevel(expLevels));
     }
 
 }

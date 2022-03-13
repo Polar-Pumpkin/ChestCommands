@@ -6,6 +6,7 @@
 package me.filoghost.chestcommands.api;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -23,6 +24,6 @@ public interface ClickHandler {
      * @param clicker  the player that clicked an icon (identical to {@link MenuView#getViewer()})
      * @since 1
      */
-    void onClick(@NotNull MenuView menuView, @NotNull Player clicker);
+    void onClick(@NotNull MenuView menuView, @NotNull Player clicker, @NotNull InventoryClickEvent event);
 
 }

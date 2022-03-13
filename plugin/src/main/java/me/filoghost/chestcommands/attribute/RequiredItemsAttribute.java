@@ -5,14 +5,17 @@
  */
 package me.filoghost.chestcommands.attribute;
 
-import java.util.ArrayList;
-import java.util.List;
 import me.filoghost.chestcommands.icon.InternalConfigurableIcon;
 import me.filoghost.chestcommands.icon.requirement.item.RequiredItem;
+import me.filoghost.chestcommands.icon.requirement.item.RequiredItems;
 import me.filoghost.chestcommands.parsing.ItemStackParser;
 import me.filoghost.chestcommands.parsing.ParseException;
+import org.bukkit.event.inventory.ClickType;
 
-public class RequiredItemsAttribute implements IconAttribute {
+import java.util.ArrayList;
+import java.util.List;
+
+public class RequiredItemsAttribute extends ClickTypedIconAttribute {
 
     private final List<RequiredItem> requiredItems;
 
@@ -33,10 +36,15 @@ public class RequiredItemsAttribute implements IconAttribute {
             }
         }
     }
-    
+
+    @Override
+    public void apply(InternalConfigurableIcon icon, ClickType type) {
+        icon.addRequirement(type, new RequiredItems(requiredItems));
+    }
+
     @Override
     public void apply(InternalConfigurableIcon icon) {
-        icon.setRequiredItems(requiredItems);
+        icon.addRequirement(null, new RequiredItems(requiredItems));
     }
 
 }
