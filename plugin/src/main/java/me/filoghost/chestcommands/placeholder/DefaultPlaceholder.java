@@ -8,10 +8,9 @@ package me.filoghost.chestcommands.placeholder;
 import me.filoghost.chestcommands.api.PlaceholderReplacer;
 import me.filoghost.chestcommands.hook.PointEconomyHook;
 import me.filoghost.chestcommands.hook.VaultEconomyHook;
+import me.filoghost.chestcommands.util.Utils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-
-import java.util.Arrays;
 
 public enum DefaultPlaceholder {
 
@@ -39,9 +38,13 @@ public enum DefaultPlaceholder {
         }
     }),
 
-    SPACE_LEFT("space_left", (player, argument) -> String.valueOf(Arrays.stream(player.getInventory().getContents())
-            .filter(item -> item == null || item.getType() == Material.AIR)
-            .count()));
+    SPACE_LEFT("space_left", (player, argument) -> {
+        int multiply = 1;
+        if (argument != null && argument.startsWith("x")) {
+            multiply = NumberUtils.toInt(argument.substring(1), 1);
+        }
+        return String.valueOf(Utils.countEmptySlot(player) * multiply);
+    });
 
 
     private final String identifier;
